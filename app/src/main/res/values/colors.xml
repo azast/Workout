@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+        <color name="WorkoutColor1">#FF5733</color>   <!-- Red -->
+        <color name="WorkoutColor2">#FFC107</color>    <!-- Amber -->
+        <color name="WorkoutColor3">#2196F3</color> <!-- Blue -->
+        <color name="WorkoutColor4">#4CAF50</color>  <!-- Green -->
+        <color name="WorkoutColor5">#333333</color> <!-- Dark Gray -->
+        <color name="WorkoutColor6">#FFFF00</color>        <!-- Yellow -->
+
+
+</resources>
