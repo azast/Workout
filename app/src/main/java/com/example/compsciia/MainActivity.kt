@@ -1,5 +1,6 @@
 package com.example.compsciia
 
+
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +27,6 @@ class MainActivity : AppCompatActivity(), WorkoutsAdapter.workoutsClickListener,
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var database: WorkoutDatabase
-    var completeWorkout: Int = 0
     lateinit var viewModel: WorkoutViewModel
     lateinit var adapter: WorkoutsAdapter
     lateinit var selectedWorkout: Workout
@@ -89,6 +89,10 @@ class MainActivity : AppCompatActivity(), WorkoutsAdapter.workoutsClickListener,
             val intent = Intent(this, AddWorkout::class.java)
             getContent.launch(intent)
         }
+        binding.fbWorkoutHistory.setOnClickListener {
+            val intent = Intent(this, WorkoutHistory::class.java)
+            getContent.launch(intent)
+        }
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
@@ -132,7 +136,6 @@ class MainActivity : AppCompatActivity(), WorkoutsAdapter.workoutsClickListener,
             return true
         }
         else if(item?.itemId == R.id.complete_workout){
-            completeWorkout += 1
             return true
         }
         return false

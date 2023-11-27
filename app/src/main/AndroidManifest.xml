@@ -16,6 +16,9 @@
             android:name=".AddWorkout"
             android:exported="false" />
         <activity
+            android:name=".WorkoutHistory"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
