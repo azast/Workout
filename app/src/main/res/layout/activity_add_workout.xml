@@ -41,6 +41,8 @@
                 app:srcCompat="@drawable/baseline_check_24" />
 
 
+
+
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
@@ -62,6 +64,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
+
+
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_workout"
         android:layout_width="0dp"
@@ -77,6 +81,7 @@
         app:layout_constraintEnd_toEndOf="@+id/et_title"
         app:layout_constraintStart_toStartOf="@+id/et_title"
         app:layout_constraintTop_toBottomOf="@+id/et_title" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
