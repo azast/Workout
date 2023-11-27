@@ -5,5 +5,10 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="AppTheme.MenuText" parent="TextAppearance.AppCompat.Widget.ActionBar.Menu">
+        <item name="android:textSize">18sp</item> <!-- Adjust the text size as needed -->
+    </style>
+
+
     <style name="Theme.CompSciIA" parent="Base.Theme.CompSciIA" />
 </resources>
