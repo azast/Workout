@@ -14,23 +14,31 @@ import androidx.cardview.widget.CardView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.compsciia.Adapter.CompletedAdapter
 import com.example.compsciia.Adapter.WorkoutsAdapter
 import com.example.compsciia.AddWorkout
+import com.example.compsciia.Database.CompletedRepository
 import com.example.compsciia.Database.WorkoutDatabase
+import com.example.compsciia.Models.CompletedViewModel
+import com.example.compsciia.Models.CompletedWorkout
 import com.example.compsciia.Models.Workout
 import com.example.compsciia.Models.WorkoutViewModel
 import com.example.compsciia.R
 import com.example.compsciia.WorkoutHistory
 import com.example.compsciia.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
+// MainActivity
 class MainActivity : AppCompatActivity(),
     WorkoutsAdapter.workoutsClickListener,
+    CompletedAdapter.CompletedClickListener,
     PopupMenu.OnMenuItemClickListener,
     NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var database: WorkoutDatabase
     private lateinit var viewModel: WorkoutViewModel
     private lateinit var adapter: WorkoutsAdapter
     private lateinit var selectedWorkout: Workout
@@ -74,8 +82,6 @@ class MainActivity : AppCompatActivity(),
                 adapter.updateList(list)
             }
         }
-
-        database = WorkoutDatabase.getDataBase(this)
     }
 
     private fun initUI() {
@@ -101,18 +107,6 @@ class MainActivity : AppCompatActivity(),
         adapter = WorkoutsAdapter(this, this)
 
         binding.recyclerView.adapter = adapter
-
-        //binding.fbAddWorkout.setOnClickListener {
-            // Handle the click on FloatingActionButton for AddWorkout
-            //val intent = Intent(this, AddWorkout::class.java)
-            //getContent.launch(intent)
-        //}
-
-        //binding.fbWorkoutHistory.setOnClickListener {
-            // Handle the click on FloatingActionButton for WorkoutHistory
-            //val intent = Intent(this, WorkoutHistory::class.java)
-            //getContent.launch(intent)
-        //}
 
         binding.searchView.setOnQueryTextListener(object :
             SearchView.OnQueryTextListener,
@@ -148,33 +142,55 @@ class MainActivity : AppCompatActivity(),
         popUp.show()
     }
 
+    fun getCurrentDate2(): String {
+        val sdf = SimpleDateFormat("EEE, d MMM, yyyy HH:mm a", Locale.getDefault())
+        return sdf.format(Date())
+    }
+
+
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.delete_workout) {
             viewModel.deleteWorkout(selectedWorkout)
             return true
         } else if (item?.itemId == R.id.complete_workout) {
-            // Handle the click on Complete Workout
+            val completedWorkout = CompletedWorkout(
+                id2 = null,
+                title2 = selectedWorkout.title,
+                date2 = getCurrentDate2(),
+                associatedWorkoutId = selectedWorkout.id
+            )
+            val completedViewModel = ViewModelProvider(this).get(CompletedViewModel::class.java)
+            completedViewModel.insertCompleted(completedWorkout)
             return true
         }
         return false
     }
 
+
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_item1 -> {
-                // Handle the click on Menu Item 1
                 val intent = Intent(this, AddWorkout::class.java)
                 getContent.launch(intent)
                 return true
             }
             R.id.menu_item2 -> {
-                // Handle the click on Menu Item 2
                 val intent = Intent(this, WorkoutHistory::class.java)
                 getContent.launch(intent)
                 return true
             }
-            // Add more cases if you have additional menu items
             else -> return false
         }
     }
+
+    override fun onItemClicked(completedWorkout: CompletedWorkout) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onLongItemClicked(completedWorkout: CompletedWorkout, cardView: CardView) {
+        TODO("Not yet implemented")
+    }
+
+
 }

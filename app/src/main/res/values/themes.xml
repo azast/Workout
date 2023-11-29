@@ -7,8 +7,8 @@
 
     <style name="AppTheme.MenuText" parent="TextAppearance.AppCompat.Widget.ActionBar.Menu">
         <item name="android:textSize">18sp</item> <!-- Adjust the text size as needed -->
+        <item name="android:textStyle">bold</item> <!-- Set the text style to bold -->
     </style>
-
 
     <style name="Theme.CompSciIA" parent="Base.Theme.CompSciIA" />
 </resources>
