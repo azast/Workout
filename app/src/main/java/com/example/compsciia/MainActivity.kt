@@ -173,7 +173,7 @@ class MainActivity : AppCompatActivity(),
             R.id.menu_item1 -> {
                 val intent = Intent(this, AddWorkout::class.java)
                 getContent.launch(intent)
-                return true
+                 return true
             }
             R.id.menu_item2 -> {
                 val intent = Intent(this, WorkoutHistory::class.java)
